@@ -1,16 +1,20 @@
 # This program uses a dictionary as a deck of cards.
 
+from http.cookiejar import DefaultCookiePolicy
+
+
 def main():
     # Create a deck of cards.
-    deck = create_deck()
+     deck = create_deck()
 
     # Get the number of cards to deal.
-    num_cards = int(input('How many cards should I deal? '))
+     number= int(input('How many cards should I deal? '))
 
 
 
     # Deal the cards.
-    deal_cards(deck, num_cards)
+     deal_cards(deck, number)
+
 
     
     
@@ -54,29 +58,39 @@ def create_deck():
 
 def deal_cards(deck, number):
     # Initialize an accumulator for the hand value.
-    hand_value = 0
-    
+
+    hand= 0
     
 
     # Make sure the number of cards to deal is not
     # greater than the number of cards in the deck.
-    if number > len(deck):
-        number = len(deck)
+    if number >52: 
+        print('That number is larger than the number of cards in a deck. Changing your number to the highest number of cards in a deck')
+        number = 52
+
     
     
 
     # Deal the cards and accumulate their values.
-    for x in range(number):
-        card, value = deck.popitem()
-        print(card)
-        hand_value += value
+    import random
     
+    for count in range(number):
+        card = random.choice(list(deck))   #list(deck) gives a list of the KEYS in the dictionaries. random.choice = picks 1 item from that list
+        value = deck[card]
+        print(card)
+        hand +=value
+
+        del deck[card]
+
+    #for card in range(number):
+   
+
 
 
     
 
     # Display the value of the hand.
-    print('Value of this hand:', hand_value)
+    print('Value of this hand:',hand)
     
     
 

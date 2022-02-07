@@ -16,9 +16,11 @@ room-number,use,sq-ft,price
 '''
 
 
+outfile = open('retail_space1.csv', 'w') 
+outfile.write('room-number,use,sq-ft,price\n')
 
 
-datastore = { "medical":[
+datastore = { "medical":[    #medical = only key in dictionary. it's a list of dictionaries
       { "room-number": 100,
         "use": "reception",
         "sq-ft": 50,
@@ -47,3 +49,12 @@ datastore = { "medical":[
 
       ]
 }
+
+#for loop
+mylist = datastore['medical']
+print(type(mylist))  #list of dictionaries
+
+for l in mylist:  #l = each dictionary in the list (5 in total). l = each element in the datastore['medical'] list
+  outfile.write(str(l['room-number'])+','+l['use']+','+str(l['sq-ft'])+','+str(l['price'])+'\n')
+
+outfile.close()
